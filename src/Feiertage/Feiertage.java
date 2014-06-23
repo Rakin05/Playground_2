@@ -1,10 +1,6 @@
 package Feiertage;
 
-import groovy.lang.Closure;
-import org.apache.tools.ant.taskdefs.Local;
-
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * Erstellt von Felix Klotzsche am 23.06.2014.
@@ -28,16 +24,50 @@ public class Feiertage {
 
         if (day > 31) // wenn das Datum im April liegt
             return LocalDate.of(year, 4, day - 31);
-        else //wenn das Datum im März liegt
-            return LocalDate.of(year, 3, day);
+        return LocalDate.of(year, 3, day);
+    }
+
+    private static int getDayOfYear(int year, int shiftDay){
+        return getOsterSonntag(year).getDayOfYear() + shiftDay;
+    }
+
+    public static LocalDate getGruenDonnerstag(int year){
+        final int day = getDayOfYear(year, -3);
+        return LocalDate.ofYearDay(year, day);
+    }
+
+    public static LocalDate getKarFreitag(int year){
+        final int day = getDayOfYear(year,-2);
+        return LocalDate.ofYearDay(year, day);
     }
 
     public static LocalDate getOsterMontag(int year) {
-        final int day = getOsterSonntag(year).getDayOfMonth() + 1;
-        final int month = getOsterSonntag(year).getMonthValue();
-        if(day> 31)
-            return LocalDate.of(year, 4, day-31);
-        else
-            return LocalDate.of(year, month, day);
+        final int day = getDayOfYear(year,1);
+        return LocalDate.ofYearDay(year, day);
+    }
+
+    public static LocalDate getChristHimmelFahrt(int year){
+        final int day = getDayOfYear(year,39);
+        return LocalDate.ofYearDay(year, day);
+    }
+
+    public static LocalDate getPfingstSonntag(int year) {
+        final int day = getDayOfYear(year, 49);
+        return LocalDate.ofYearDay(year, day);
+    }
+
+    public static LocalDate getPfingstMontag(int year) {
+        final int day = getDayOfYear(year, 50);
+        return LocalDate.ofYearDay(year, day);
+    }
+
+    public static LocalDate getFronleichnam(int year) {
+        final int day = getDayOfYear(year, 60);
+        return LocalDate.ofYearDay(year, day);
+    }
+
+    public static LocalDate getBußUndBettag(int year) {
+        final int day = 22 - ((year - 1) + year / 4) % 7;
+        return LocalDate.of(year, 11, day);
     }
 }
