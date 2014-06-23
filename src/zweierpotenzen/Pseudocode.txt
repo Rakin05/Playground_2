@@ -1,0 +1,9 @@
+array potenzen = []
+
+i = 0
+solange i kleiner gleich 20
+    potenz = 2^i
+    füge potenzen potenz hinzu
+
+für jedes element in potenzen
+    gib element aus
