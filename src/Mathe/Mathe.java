@@ -23,6 +23,7 @@ public class Mathe {
         System.out.println(x == sub(x, y) + y);
 
         System.out.println(mul(5, 3));  // sollte 15 sein
+        System.out.println(mul(5, -3));  // sollte 15 sein
         System.out.println(pow(2, 3));  // sollte 8 sein
         System.out.println(pow(2, -3)); // sollte 0.0 sein
         System.out.println(pow(2, 0));  // sollte 1 sein
